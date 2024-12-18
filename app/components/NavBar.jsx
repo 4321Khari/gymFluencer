@@ -12,7 +12,7 @@ const orbitron = Orbitron({
 
 export default function NavBar() {
   return (
-    <div className=" w-full z-20   relative   ">
+    <div style={{ orbitron }} className=" w-full z-20   relative   ">
       <div className=" w-full relative  h-36  items-center  flex justify-center">
         <div className=" w-[70%]  fixed backdrop-blur-xl  bg-black/60    flex items-center  px-3 rounded-full  h-[5.2rem]  ">
           <img

@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Orbitron", "sans-serif"], // Set Orbitron as the default sans font
+        sans: ["Orbitron", "sans-serif"],
       },
       keyframes: {
         "infinite-scroll": {
