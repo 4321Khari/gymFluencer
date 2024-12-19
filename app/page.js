@@ -1,11 +1,13 @@
 "use client";
 import NavBar from "./components/NavBar";
-import { useState } from "react";
-import "./globals.css";
+import { useEffect, useState } from "react";
+
 import CardComponent from "./components/CardComponent";
+import "./components/animate.css";
 
 const scrollData1 = ["Fitness", "Transformation", "Motivation", "Proqress "];
 const scrollData2 = ["Work", "Community", "Strength", "Proqress "];
+const scrollData3 = ["PROGRESS TRACKING FITENESS PLAN", "WORKOUT ROUTINES"];
 const arrayImage = [
   {
     name: "TRACK",
@@ -58,6 +60,40 @@ const cardDetails = [
 
 export default function Home() {
   const [videoPlayer, setVideoPlayer] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const divs = [
+    <div key="1" className="flex-shrink-0 w-full h-[300px] bg-blue-200">
+      <img
+        src="https://framerusercontent.com/images/yuM4HjReun2ffEbHgraaGxf4Gl0.png"
+        alt="1"
+        className="w-full h-full object-cover"
+      />
+    </div>,
+    <div key="2" className="flex-shrink-0 w-full h-[300px] bg-green-200">
+      <img
+        src="https://framerusercontent.com/images/y3OEsrPpF9ZlVWFn8txqhafXYY.png"
+        alt="2"
+        className="w-full h-full object-cover"
+      />
+    </div>,
+    <div key="3" className="flex-shrink-0 w-full h-[300px] bg-purple-200">
+      <img
+        src="https://framerusercontent.com/images/WaP2lGu3X4zc8d5kCwZyhH3lDI.png"
+        alt="3"
+        className="w-full h-full object-cover"
+      />
+    </div>,
+  ];
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % divs.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + divs.length) % divs.length);
+  };
+
   return (
     <div className=" bg-black ">
       <div className="  h-screen  w-full relative ">
@@ -175,16 +211,19 @@ export default function Home() {
         GymFluencer offers 5 essential services to help you <br /> achieve your
         fitness goals with ease and flexibility.
       </div>
-      <div className="  flex  overflow-hidden">
+      <div className="  flex   overflow-hidden">
         {arrayImage.map((item, index) => (
-          <div key={index} className="   relative">
+          <div
+            key={index}
+            className=" w-[20.5rem] h-[50rem]  overflow-hidden  relative group"
+          >
             <img
               src={item.url}
               alt=""
-              className=" opacity-65  w-[20.5rem] h-[50rem]  inset-0     object-cover"
+              className=" opacity-65 w-full h-full tratransform transition-transform duration-300 group-hover:scale-110  inset-0  object-cover"
             />{" "}
-            <div className=" absolute w-full   inset-0   text-xl font-bold  text-white flex items-center justify-center">
-              {item.name}
+            <div className="  absolute w-full   inset-0   text-xl font-bold  text-white flex items-center justify-center">
+              <p className="cursor-pointer"> {item.name}</p>
             </div>
           </div>
         ))}
@@ -199,8 +238,8 @@ export default function Home() {
         Unlock your full potential with GymFluencer your personal fitness <br />
         partner for progress and motivation
       </div>
-      <div className=" space-y-10 space-x-40 flex">
-        <div className="space-y-10 ">
+      <div className="    m-auto  flex">
+        <div className="space-y-10 m-auto">
           <CardComponent
             heading={cardDetails[0].heading}
             description={cardDetails[0].description}
@@ -226,7 +265,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="  space-y-10 ">
+        <div className="  m-auto space-y-10 ">
           <CardComponent
             heading={cardDetails[2].heading}
             description={cardDetails[2].description}
@@ -238,6 +277,128 @@ export default function Home() {
             url={cardDetails[3].url}
           />
         </div>
+      </div>
+      <div className="  mt-10  relative">
+        <div
+          className="    inset-0 h-[40rem]   w-full bg-cover bg-center opacity-20 "
+          style={{
+            backgroundImage:
+              "url('https://framerusercontent.com/images/2AmDHmcEtUuynT8pV9nsBLAMYeU.png')",
+          }}
+        ></div>
+        <div className=" flex absolute inset-0 w-full h-[40rem]  justify-center   ">
+          <div className="  flex w-[90%] h[90%] text-red-600">
+            <div className="w-1/2 p-10  ">
+              <div className="  p-6  text-4xl font-bold">
+                {" "}
+                Your <br />
+                Personalized <br />
+                Fitness Hub
+              </div>
+              <div className="mt-10 p-6 space-y-10 text-[#EFEFEF] ">
+                <div>
+                  Personalized workout routines tailored to your goals and{" "}
+                  <br />
+                  preferences
+                </div>
+                <div>
+                  Get expert guidance with virtual coaching sessions, <br />{" "}
+                  available anytime, anywhere.
+                </div>
+                <div>
+                  Track your fitness journey with detailed analytics, goal{" "}
+                  <br />
+                  setting, and achievements.
+                </div>
+              </div>
+            </div>
+
+            <div className=" w-1/2 flex justify-center items-center">
+              <div className="window  ">
+                <div className="window-inner   ">
+                  <div className=" w-[40rem] h-96  bg-blue-200">
+                    <img
+                      src="https://framerusercontent.com/images/yuM4HjReun2ffEbHgraaGxf4Gl0.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className=" w-[40rem] h-96 rounded-lg bg-green-200">
+                    <img
+                      src="https://framerusercontent.com/images/y3OEsrPpF9ZlVWFn8txqhafXYY.png"
+                      alt=""
+                      className=" w-full h-full object-fit object-top"
+                    />
+                  </div>
+                  <div className=" w-[40rem] h-96 rounded-lg bg-purple-200">
+                    <img
+                      src="https://framerusercontent.com/images/WaP2lGu3X4zc8d5kCwZyhH3lDI.png?scale-down-to=1024"
+                      alt=""
+                      className=" w-full h-full object-fill "
+                    />
+                  </div>
+                  <div className=" w-[40rem]  h-96 rounded-lg bg-blue-200">
+                    <img
+                      src="https://framerusercontent.com/images/yuM4HjReun2ffEbHgraaGxf4Gl0.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className=" overflow-hidden h-9 flex items-center bg-[#FF3333]">
+        <ul className=" animate-infinite-scroll text-[10px]   font-bold text-white space-x-4  flex">
+          {[
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+            ...scrollData3,
+          ].map((item) => (
+            <li
+              className=" w-full h-full flex    whitespace-nowrap"
+              key={Math.random()}
+            >
+              <span className="   w-full h-full flex justify-center items-center">
+                {`${item}        `} &nbsp; &nbsp; &#x2022;
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="relative w-full h-[300px] overflow-hidden">
+        {/* Left Button */}
+        <button
+          onClick={goToPrev}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 z-10"
+        >
+          {"<"}
+        </button>
+
+        {/* Scrolling Area */}
+        <div
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${currentIndex * 100}vw)`,
+          }}
+        >
+          {divs.map((div) => div)}
+        </div>
+
+        {/* Right Button */}
+        <button
+          onClick={goToNext}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 z-10"
+        >
+          {">"}
+        </button>
       </div>
     </div>
   );
